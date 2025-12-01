@@ -6,7 +6,6 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
 
   <style>
-    /* ---------- FONTS ---------- */
     *{
       box-sizing:border-box;
       font-family:"Gotham","Montserrat","Segoe UI",system-ui,sans-serif;
@@ -20,77 +19,54 @@
       padding:40px 0;
     }
 
-    /* ---------- CARD ---------- */
     .card{
       max-width:1000px;
       margin:0 auto;
       background:#fff4ec;
-      padding:40px 40px 46px;
+      padding:48px 40px 50px;
       border-radius:20px;
       border:1px solid rgba(0,0,0,0.06);
       box-shadow:0 6px 20px rgba(0,0,0,0.15);
       position:relative;
       overflow:hidden;
+      text-align:center;
     }
 
-    /* ---------- REALISTIC CHRISTMAS BRANCH ---------- */
+    /* ---------- REALISTIC SVG CHRISTMAS BRANCH ---------- */
     .branch{
       width:100%;
-      height:48px;
-      margin-bottom:32px; /* mehr Luft zum Text */
-      position:relative;
       display:flex;
       justify-content:center;
-      align-items:flex-start;
+      margin-bottom:32px;
     }
-
-    .needle{
-      position:absolute;
-      width:4px;
-      height:20px;
-      background:linear-gradient(180deg,#0f5a23,#1e7a34,#0f5a23);
-      border-radius:2px;
-      box-shadow:0 0 4px rgba(0,0,0,0.2);
-      transform-origin:bottom center;
+    .branch svg{
+      width:340px;
+      height:auto;
       opacity:0.95;
     }
 
-    /* 40 Nadeln erzeugen */
-    /* links */
-    .needle:nth-child(1){ left:35%; transform:rotate(-28deg);}
-    .needle:nth-child(2){ left:36%; transform:rotate(-18deg);}
-    .needle:nth-child(3){ left:37%; transform:rotate(-8deg);}
-    .needle:nth-child(4){ left:38%; transform:rotate(4deg);}
-    .needle:nth-child(5){ left:39%; transform:rotate(14deg);}
-    .needle:nth-child(6){ left:40%; transform:rotate(25deg);}
-    /* rechts */
-    .needle:nth-child(7){ left:60%; transform:rotate(28deg);}
-    .needle:nth-child(8){ left:61%; transform:rotate(18deg);}
-    .needle:nth-child(9){ left:62%; transform:rotate(8deg);}
-    .needle:nth-child(10){ left:63%; transform:rotate(-4deg);}
-    .needle:nth-child(11){ left:64%; transform:rotate(-16deg);}
-    .needle:nth-child(12){ left:65%; transform:rotate(-26deg);}
-
     /* ---------- BAUBLES ---------- */
+    .baubles{
+      display:flex;
+      justify-content:center;
+      gap:20px;
+      margin-top:-18px;
+      margin-bottom:26px;
+    }
+
     .bauble{
-      position:absolute;
-      top:-6px;
-      width:20px;
-      height:20px;
+      width:26px;
+      height:26px;
       border-radius:50%;
       background:radial-gradient(circle at 30% 30%,#fff,#c62828);
-      box-shadow:0 0 8px rgba(198,40,40,0.6);
+      box-shadow:0 0 10px rgba(198,40,40,0.6);
       animation:blink 2.4s infinite ease-in-out;
     }
     .bauble.gold{
       background:radial-gradient(circle at 30% 30%,#fffbe2,#f6c453);
-      box-shadow:0 0 8px rgba(246,196,83,0.6);
+      box-shadow:0 0 10px rgba(246,196,83,0.6);
       animation-delay:0.8s;
     }
-
-    .bauble:nth-child(13){ left:46%; }
-    .bauble:nth-child(14){ left:50%; }
-    .bauble:nth-child(15){ left:54%; }
 
     @keyframes blink{
       0%,100%{ opacity:0.3; transform:scale(1);}
@@ -102,11 +78,25 @@
       font-size:1.26rem;
       line-height:1.58;
       color:#4a2d2d;
-      text-align:left;
+      margin-bottom:32px;
     }
-    .text p{
-      margin-bottom:8px;
-      font-weight:400;
+
+    /* ---------- BUTTON ---------- */
+    .btn{
+      display:inline-block;
+      padding:14px 26px;
+      background:#c62828;
+      color:#fff;
+      text-decoration:none;
+      border-radius:10px;
+      font-size:1.1rem;
+      transition:0.2s ease;
+      box-shadow:0 4px 12px rgba(0,0,0,0.18);
+    }
+    .btn:hover{
+      background:#a92020;
+      transform:translateY(-2px);
+      box-shadow:0 6px 16px rgba(0,0,0,0.25);
     }
 
   </style>
@@ -115,23 +105,27 @@
 
   <div class="card">
 
-    <!-- Realistic Christmas Branch -->
+    <!-- Realistic Christmas Branch (pure SVG) -->
     <div class="branch">
-      <div class="needle"></div>
-      <div class="needle"></div>
-      <div class="needle"></div>
-      <div class="needle"></div>
-      <div class="needle"></div>
-      <div class="needle"></div>
+      <svg viewBox="0 0 500 120">
+        <path d="M20 60 Q250 -10 480 60" stroke="#0f5a23" stroke-width="8" stroke-linecap="round" fill="none"/>
+        <path d="M60 60 Q250 -20 440 60" stroke="#1e7a34" stroke-width="6" stroke-linecap="round" fill="none"/>
+        <path d="M100 60 Q250 -30 400 60" stroke="#0f5a23" stroke-width="4" stroke-linecap="round" fill="none"/>
 
-      <div class="needle"></div>
-      <div class="needle"></div>
-      <div class="needle"></div>
-      <div class="needle"></div>
-      <div class="needle"></div>
-      <div class="needle"></div>
+        <!-- small needles -->
+        <g stroke-linecap="round">
+          <line x1="140" y1="60" x2="130" y2="40" stroke="#1e7a34" stroke-width="4"/>
+          <line x1="180" y1="60" x2="170" y2="35" stroke="#0f5a23" stroke-width="4"/>
+          <line x1="220" y1="60" x2="210" y2="38" stroke="#1e7a34" stroke-width="4"/>
+          <line x1="260" y1="60" x2="270" y2="34" stroke="#0f5a23" stroke-width="4"/>
+          <line x1="300" y1="60" x2="310" y2="38" stroke="#1e7a34" stroke-width="4"/>
+          <line x1="340" y1="60" x2="350" y2="40" stroke="#0f5a23" stroke-width="4"/>
+        </g>
+      </svg>
+    </div>
 
-      <!-- baubles in front -->
+    <!-- Baubles -->
+    <div class="baubles">
       <div class="bauble"></div>
       <div class="bauble gold"></div>
       <div class="bauble"></div>
@@ -142,6 +136,11 @@
       <p>Initiez-vous à l’art du perlage en créant des pièces élégantes et festives.</p>
       <p>Apprenez les bases, jouez avec les couleurs et explorez différentes techniques pour réaliser vos propres bijoux scintillants — bagues, colliers, bracelets — inspirés par la magie de Noël.</p>
     </div>
+
+    <!-- BUTTON -->
+    <a class="btn" href="https://www.unipop.lu/featured_course/workshop-noel-lunivers-du-perlage/" target="_blank">
+      ➜ Voir le cours
+    </a>
 
   </div>
 
