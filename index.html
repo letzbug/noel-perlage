@@ -32,7 +32,6 @@
       text-align:center;
     }
 
-    /* Hintergrund-Schnee */
     .card::before{
       content:"";
       position:absolute;
@@ -44,7 +43,9 @@
 
     .content{ position:relative; z-index:2; }
 
-    /* Weihnachtsbäume links/rechts */
+    /* ---------------------------------------------------------------- */
+    /*   WEIHNACHTSBÄUME LINKS/RECHTS                                  */
+    /* ---------------------------------------------------------------- */
     .tree{
       position:absolute;
       top:40px;
@@ -54,7 +55,15 @@
     .tree.left{ left:22px; }
     .tree.right{ right:22px; transform:scaleX(-1); }
 
-    /* Hängende Kugeln */
+    /* ---------------------------------------------------------------- */
+    /*   BLINKENDE KUGELN OBEN                                         */
+    /* ---------------------------------------------------------------- */
+
+    @keyframes blink {
+      0%,100% { opacity:0.35; transform:scale(1); }
+      50%     { opacity:1; transform:scale(1.25); }
+    }
+
     .ornaments{
       display:flex;
       justify-content:center;
@@ -63,7 +72,6 @@
     }
 
     .ornament{
-      position:relative;
       display:flex;
       flex-direction:column;
       align-items:center;
@@ -88,6 +96,7 @@
       width:26px;
       height:26px;
       border-radius:50%;
+      animation:blink 2.6s infinite ease-in-out;
       background:radial-gradient(circle at 30% 30%,#fff,#c62828);
       box-shadow:0 0 10px rgba(198,40,40,0.55);
     }
@@ -95,9 +104,11 @@
     .ornament-ball.gold{
       background:radial-gradient(circle at 30% 30%,#fffdf0,#f6c453);
       box-shadow:0 0 12px rgba(246,196,83,0.7);
+      animation-delay:0.8s;
     }
 
-    /* Text */
+    /* ---------------------------------------------------------------- */
+
     .text{
       font-size:1.22rem;
       line-height:1.6;
@@ -106,7 +117,14 @@
       padding:0 40px;
     }
 
-    /* Button */
+    .text p{
+      margin-bottom:8px;
+    }
+
+    /* ---------------------------------------------------------------- */
+    /*   NAVY BUTTON                                                    */
+    /* ---------------------------------------------------------------- */
+
     .btn{
       display:inline-block;
       padding:14px 32px;
@@ -144,7 +162,6 @@
         <polygon points="60,40 100,95 20,95" fill="#1e7a34"/>
         <polygon points="60,75 110,140 10,140" fill="#0f5a23"/>
         <rect x="52" y="140" width="16" height="18" rx="3" fill="#8b5a2b"/>
-        <!-- Kugeln -->
         <circle cx="60" cy="45" r="5" fill="#c62828"/>
         <circle cx="75" cy="85" r="5" fill="#f6c453"/>
         <circle cx="42" cy="110" r="5" fill="#c62828"/>
@@ -165,8 +182,8 @@
 
     <div class="content">
 
-      <!-- Kugeln oben -->
-      <div class="ornaments" aria-hidden="true">
+      <!-- Hängende Kugeln -->
+      <div class="ornaments">
         <div class="ornament">
           <div class="ornament-string"></div>
           <div class="ornament-cap"></div>
@@ -191,7 +208,9 @@
       </div>
 
       <!-- Button -->
-      <a class="btn" href="https://www.unipop.lu/featured_course/workshop-noel-lunivers-du-perlage/" target="_blank">
+      <a class="btn" 
+         href="https://www.unipop.lu/formations/workshop-noel-lunivers-du-perlage-debutant-ar-biju-30-2025-2026/" 
+         target="_blank">
         Voir le cours
       </a>
 
