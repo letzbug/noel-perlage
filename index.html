@@ -4,185 +4,201 @@
   <meta charset="utf-8">
   <title>Workshop Noël – L’univers du perlage</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <style>
-    :root{
-      --navy:#00164a;
-      --cream:#fff3ea;
-      --text:#4a2d2d;
-      --red:#c62828;
-      --green:#1d5f2d;
-      --gold:#f6c453;
-    }
 
+  <style>
+    /* ---------- FONTS (Gotham-ähnlich) ---------- */
     *{
       box-sizing:border-box;
-      font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      font-family:"Gotham","Montserrat","Segoe UI",system-ui,sans-serif;
+      font-weight:400;
+      margin:0;
+      padding:0;
     }
 
     body{
-      margin:0;
-      background:var(--navy);
-      color:var(--text);
+      background:#00164a;
+      padding:40px 0;
     }
 
-    .page{
-      max-width:1100px;
-      margin:32px auto 40px;
-      padding:0 16px;
-    }
-
+    /* ---------- CARD ---------- */
     .card{
+      max-width:1000px;
+      margin:0 auto;
+      background:#fff4ec;
+      padding:34px 36px 40px;
+      border-radius:20px;
+      border:1px solid rgba(0,0,0,0.06);
+      box-shadow:0 6px 20px rgba(0,0,0,0.15);
       position:relative;
-      background:var(--cream);
-      border-radius:18px;
-      padding:26px 26px 24px;
-      border:1px solid rgba(0,0,0,0.05);
-      box-shadow:0 4px 14px rgba(0,0,0,0.12);
       overflow:hidden;
     }
 
-    /* Girlande oben */
+    /* ---------- BLINKING STARS ---------- */
+    @keyframes starBlink{
+      0%,100%{ opacity:0.15; transform:scale(1);}
+      50%{ opacity:0.8; transform:scale(1.25);}
+    }
+
+    .star{
+      position:absolute;
+      width:12px;
+      height:12px;
+      background:radial-gradient(circle,#fff 0%,#ffe7a0 60%,transparent 100%);
+      border-radius:50%;
+      animation:starBlink 2.4s infinite ease-in-out;
+      pointer-events:none;
+    }
+    .star:nth-child(1){ top:18px; left:40px; animation-delay:0.1s;}
+    .star:nth-child(2){ top:80px; right:60px; animation-delay:0.5s;}
+    .star:nth-child(3){ bottom:40px; left:120px; animation-delay:1.1s;}
+    .star:nth-child(4){ bottom:26px; right:100px; animation-delay:0.7s;}
+    .star:nth-child(5){ top:140px; left:50%; animation-delay:1.5s;}
+
+    /* ---------- GARLAND ---------- */
     .garland{
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      gap:18px;
+      margin-bottom:24px;
       position:relative;
-      padding-top:6px;
-      margin-bottom:18px;
     }
 
     .garland-line{
-      height:3px;
-      border-radius:999px;
-      background:linear-gradient(90deg,var(--green),#2f7a3b,var(--green));
-      box-shadow:0 0 6px rgba(0,0,0,0.18);
-    }
-
-    .baubles{
       position:absolute;
-      top:-6px;
-      left:50%;
-      transform:translateX(-50%);
-      display:flex;
-      gap:16px;
-      align-items:flex-start;
-      justify-content:center;
+      top:12px;
+      left:8%;
+      right:8%;
+      height:4px;
+      background:linear-gradient(90deg,#176733,#2c994e,#176733);
+      border-radius:999px;
+      box-shadow:0 0 6px rgba(0,0,0,0.3);
     }
 
     .bauble{
-      position:relative;
-      width:16px;
-      height:16px;
+      width:20px;
+      height:20px;
       border-radius:50%;
-      background:radial-gradient(circle at 30% 30%,#fff,var(--red));
-      box-shadow:0 0 6px rgba(198,40,40,0.7);
+      background:radial-gradient(circle at 30% 30%,#fff,#c62828);
+      box-shadow:0 0 8px rgba(198,40,40,0.6);
+      position:relative;
+      animation:starBlink 3s infinite ease-in-out;
     }
-
     .bauble.gold{
-      background:radial-gradient(circle at 30% 30%,#fffdf2,var(--gold));
-      box-shadow:0 0 6px rgba(246,196,83,0.7);
+      background:radial-gradient(circle at 30% 30%,#fffbe2,#f6c453);
+      box-shadow:0 0 8px rgba(246,196,83,0.6);
+      animation-delay:0.8s;
     }
 
     .bauble::before{
       content:"";
       position:absolute;
-      top:-5px;
+      top:-6px;
       left:50%;
-      width:8px;
-      height:5px;
-      margin-left:-4px;
+      width:9px;
+      height:6px;
+      margin-left:-4.5px;
       border-radius:2px;
       background:#8b6a4a;
     }
 
-    /* Eck-Deko (Stechpalme) */
+    /* ---------- HOLLY CORNERS ---------- */
     .holly{
       position:absolute;
-      width:60px;
-      height:60px;
+      width:70px;
+      height:70px;
       pointer-events:none;
+      transform-origin:center;
     }
-    .holly.left{ top:-6px; left:-6px; }
-    .holly.right{ top:-6px; right:-6px; transform:scaleX(-1); }
+    .holly.left{
+      top:-10px;
+      left:-4px;
+    }
+    .holly.right{
+      top:-10px;
+      right:-4px;
+      transform:scaleX(-1);
+    }
 
-    .holly-leaf{
+    .leaf{
       position:absolute;
-      width:54px;
-      height:18px;
-      background:linear-gradient(90deg,#164a24,#2e8341);
-      border-radius:18px;
-      box-shadow:0 0 4px rgba(0,0,0,0.3);
+      width:60px;
+      height:20px;
+      background:linear-gradient(90deg,#145121,#2f8d46);
+      border-radius:20px;
+      box-shadow:0 0 4px rgba(0,0,0,0.35);
       transform-origin:left center;
     }
-    .holly-leaf:nth-child(1){ top:20px; left:6px; transform:rotate(-18deg); }
-    .holly-leaf:nth-child(2){ top:32px; left:8px; transform:rotate(10deg); }
+    .leaf:nth-child(1){ top:22px; left:10px; transform:rotate(-16deg);}
+    .leaf:nth-child(2){ top:35px; left:14px; transform:rotate(8deg);}
 
     .berry{
       position:absolute;
-      width:12px;
-      height:12px;
+      width:14px;
+      height:14px;
       border-radius:50%;
       background:radial-gradient(circle at 30% 30%,#fff,#b71c1c);
-      box-shadow:0 0 6px rgba(183,28,28,0.7);
+      box-shadow:0 0 6px rgba(185,28,28,0.7);
     }
-    .berry:nth-child(3){ top:22px; left:22px; }
-    .berry:nth-child(4){ top:30px; left:30px; }
+    .berry:nth-child(3){ top:24px; left:28px;}
+    .berry:nth-child(4){ top:33px; left:36px;}
 
-    /* Text */
+    /* ---------- TEXT ---------- */
     .text{
-      font-size:1.05rem;
-      line-height:1.6;
+      font-size:1.26rem;
+      line-height:1.58;
+      color:#4a2d2d;
       text-align:left;
     }
 
     .text p{
-      margin:0 0 6px;
+      margin-bottom:8px;
+      font-weight:400;
     }
 
-    .highlight{
-      font-weight:600;
-    }
-
-    /* etwas Luft auf kleineren Screens */
-    @media (max-width:640px){
-      .card{
-        padding:22px 18px 20px;
-      }
-      .text{
-        font-size:1rem;
-      }
-    }
   </style>
 </head>
 <body>
-  <div class="page">
-    <div class="card">
-      <div class="holly left">
-        <div class="holly-leaf"></div>
-        <div class="holly-leaf"></div>
-        <div class="berry"></div>
-        <div class="berry"></div>
-      </div>
-      <div class="holly right">
-        <div class="holly-leaf"></div>
-        <div class="holly-leaf"></div>
-        <div class="berry"></div>
-        <div class="berry"></div>
-      </div>
 
-      <div class="garland" aria-hidden="true">
-        <div class="garland-line"></div>
-        <div class="baubles">
-          <div class="bauble"></div>
-          <div class="bauble gold"></div>
-          <div class="bauble"></div>
-        </div>
-      </div>
+  <div class="card">
 
-      <div class="text">
-        <p>Initiez-vous à l’art du perlage en créant des pièces élégantes et festives.</p>
-        <p class="highlight">
-          Apprenez les bases, jouez avec les couleurs et explorez différentes techniques pour réaliser vos propres bijoux scintillants — bagues, colliers, bracelets — inspirés par la magie de Noël.
-        </p>
-      </div>
+    <!-- Animated Stars -->
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+
+    <!-- Holly Corners -->
+    <div class="holly left">
+      <div class="leaf"></div>
+      <div class="leaf"></div>
+      <div class="berry"></div>
+      <div class="berry"></div>
     </div>
+
+    <div class="holly right">
+      <div class="leaf"></div>
+      <div class="leaf"></div>
+      <div class="berry"></div>
+      <div class="berry"></div>
+    </div>
+
+    <!-- Garland -->
+    <div class="garland">
+      <div class="garland-line"></div>
+      <div class="bauble"></div>
+      <div class="bauble gold"></div>
+      <div class="bauble"></div>
+    </div>
+
+    <!-- Text -->
+    <div class="text">
+      <p>Initiez-vous à l’art du perlage en créant des pièces élégantes et festives.</p>
+      <p>Apprenez les bases, jouez avec les couleurs et explorez différentes techniques pour réaliser vos propres bijoux scintillants — bagues, colliers, bracelets — inspirés par la magie de Noël.</p>
+    </div>
+
   </div>
+
 </body>
 </html>
