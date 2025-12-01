@@ -32,38 +32,64 @@
       text-align:center;
     }
 
-    /* Zweig + Kugeln */
-    .branch-wrap{
+    /* Dezente Schneepunkte im Hintergrund */
+    .card::before{
+      content:"";
+      position:absolute;
+      inset:-40px;
+      background-image:
+        radial-gradient(circle,rgba(255,255,255,0.7) 0 2px,transparent 3px);
+      background-size:36px 36px;
+      opacity:0.25;
+      pointer-events:none;
+    }
+
+    .content{
+      position:relative;
+      z-index:1;
+    }
+
+    /* Hängende Kugeln */
+    .ornaments{
+      display:flex;
+      justify-content:center;
+      gap:48px;
+      margin-bottom:26px;
+    }
+
+    .ornament{
+      position:relative;
       display:flex;
       flex-direction:column;
       align-items:center;
-      margin-bottom:28px;
     }
 
-    .branch-wrap svg{
-      width:360px;
-      max-width:100%;
-      height:auto;
+    .ornament-string{
+      width:2px;
+      height:42px;
+      background:linear-gradient(#f6c453,#d9a441);
     }
 
-    .baubles{
-      display:flex;
-      justify-content:center;
-      gap:22px;
+    .ornament-cap{
+      width:10px;
+      height:6px;
+      border-radius:3px;
+      background:#b08a57;
+      margin-top:2px;
+    }
+
+    .ornament-ball{
       margin-top:4px;
-    }
-
-    .bauble{
-      width:24px;
-      height:24px;
+      width:26px;
+      height:26px;
       border-radius:50%;
       background:radial-gradient(circle at 30% 30%,#fff,#c62828);
-      box-shadow:0 0 10px rgba(198,40,40,0.5);
+      box-shadow:0 0 10px rgba(198,40,40,0.55);
     }
 
-    .bauble.gold{
+    .ornament-ball.gold{
       background:radial-gradient(circle at 30% 30%,#fffdf0,#f6c453);
-      box-shadow:0 0 10px rgba(246,196,83,0.55);
+      box-shadow:0 0 10px rgba(246,196,83,0.6);
     }
 
     .text{
@@ -103,58 +129,48 @@
       .text{
         font-size:1.05rem;
       }
+      .ornaments{
+        gap:32px;
+      }
     }
   </style>
 </head>
 <body>
 
   <div class="card">
+    <div class="content">
 
-    <!-- Tannenzweig + Kugeln -->
-    <div class="branch-wrap">
-      <svg viewBox="0 0 500 140" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <!-- Hauptast -->
-        <path d="M40 80 Q250 10 460 80" stroke="#0b4d1f" stroke-width="10" stroke-linecap="round" fill="none"/>
-        <!-- zweite Ebene -->
-        <path d="M70 82 Q250 20 430 82" stroke="#1e7a34" stroke-width="7" stroke-linecap="round" fill="none"/>
-
-        <!-- Nadeln links -->
-        <g stroke-linecap="round" stroke="#1e7a34" stroke-width="5">
-          <line x1="110" y1="78" x2="95" y2="46"/>
-          <line x1="135" y1="76" x2="120" y2="44"/>
-          <line x1="160" y1="74" x2="147" y2="44"/>
-          <line x1="185" y1="72" x2="172" y2="42"/>
-          <line x1="210" y1="70" x2="198" y2="42"/>
-        </g>
-
-        <!-- Nadeln rechts -->
-        <g stroke-linecap="round" stroke="#0f5a23" stroke-width="5">
-          <line x1="290" y1="70" x2="302" y2="42"/>
-          <line x1="315" y1="72" x2="327" y2="44"/>
-          <line x1="340" y1="74" x2="354" y2="46"/>
-          <line x1="365" y1="76" x2="380" y2="48"/>
-          <line x1="390" y1="78" x2="405" y2="50"/>
-        </g>
-      </svg>
-
-      <div class="baubles">
-        <div class="bauble"></div>
-        <div class="bauble gold"></div>
-        <div class="bauble"></div>
+      <!-- Hängende Kugeln -->
+      <div class="ornaments" aria-hidden="true">
+        <div class="ornament">
+          <div class="ornament-string"></div>
+          <div class="ornament-cap"></div>
+          <div class="ornament-ball"></div>
+        </div>
+        <div class="ornament">
+          <div class="ornament-string"></div>
+          <div class="ornament-cap"></div>
+          <div class="ornament-ball gold"></div>
+        </div>
+        <div class="ornament">
+          <div class="ornament-string"></div>
+          <div class="ornament-cap"></div>
+          <div class="ornament-ball"></div>
+        </div>
       </div>
+
+      <!-- Text -->
+      <div class="text">
+        <p>Initiez-vous à l’art du perlage en créant des pièces élégantes et festives.</p>
+        <p>Apprenez les bases, jouez avec les couleurs et explorez différentes techniques pour réaliser vos propres bijoux scintillants — bagues, colliers, bracelets — inspirés par la magie de Noël.</p>
+      </div>
+
+      <!-- Button -->
+      <a class="btn" href="https://www.unipop.lu/featured_course/workshop-noel-lunivers-du-perlage/" target="_blank">
+        Voir le cours
+      </a>
+
     </div>
-
-    <!-- Text -->
-    <div class="text">
-      <p>Initiez-vous à l’art du perlage en créant des pièces élégantes et festives.</p>
-      <p>Apprenez les bases, jouez avec les couleurs et explorez différentes techniques pour réaliser vos propres bijoux scintillants — bagues, colliers, bracelets — inspirés par la magie de Noël.</p>
-    </div>
-
-    <!-- Button -->
-    <a class="btn" href="https://www.unipop.lu/featured_course/workshop-noel-lunivers-du-perlage/" target="_blank">
-      Voir le cours
-    </a>
-
   </div>
 
 </body>
